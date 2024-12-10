@@ -4,3 +4,7 @@ Content-Type: application/json
 {
   "name": "test"
 }
+
+###
+
+GET localhost:8080/api/members/4

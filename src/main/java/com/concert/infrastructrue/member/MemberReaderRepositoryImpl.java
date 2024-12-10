@@ -10,6 +10,8 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
+
 import static com.concert.domain.member.QMemberEntity.*;
 
 @Repository
@@ -20,10 +22,14 @@ public class MemberReaderRepositoryImpl implements MemberReaderRepository {
 
     @Override
     public MemberInfoDto getMember(Long id) {
-        return queryFactory
+        MemberInfoDto member = queryFactory
                 .select(Projections.constructor(MemberInfoDto.class, memberEntity.id, memberEntity.name))
                 .from(memberEntity)
                 .where(memberEntity.id.eq(id)).fetchFirst();
+        if (Objects.isNull(member)) {
+            throw new IllegalArgumentException("유저를 찾을 수 없습니다. id=%d".formatted(id));
+        }
+        return member;
     }
 
     @Override

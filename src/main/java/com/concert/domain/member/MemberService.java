@@ -22,4 +22,8 @@ public class MemberService {
         }
         return memberStoreRepository.save(memberInfo);
     }
+
+    public MemberInfoDto getMember(Long id) {
+        return memberReaderRepository.getMember(id);
+    }
 }
