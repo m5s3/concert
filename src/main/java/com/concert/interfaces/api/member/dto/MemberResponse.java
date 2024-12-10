@@ -4,13 +4,13 @@ import com.concert.application.member.dto.MemberDto;
 import lombok.Builder;
 
 @Builder
-public record ResponseMember(
+public record MemberResponse(
         Long id,
         String name
 ) {
 
-    public static ResponseMember from(MemberDto memberDto) {
-        return ResponseMember.builder()
+    public static MemberResponse from(MemberDto memberDto) {
+        return MemberResponse.builder()
                 .id(memberDto.id())
                 .name(memberDto.name())
                 .build();

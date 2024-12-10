@@ -2,7 +2,7 @@ package com.concert.interfaces.api.member.dto;
 
 import com.concert.application.member.dto.CreateMemberCommand;
 
-public record RequestCreateMember(
+public record CreateMemberRequest(
         String name
 ) {
 
