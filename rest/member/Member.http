@@ -7,4 +7,4 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/api/members/4
+GET localhost:8080/api/members/1
