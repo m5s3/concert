@@ -26,6 +26,9 @@ public class PointEntity extends BaseEntity {
     @Column(nullable = false)
     private Long memberId;
 
+    @Column(nullable = false)
+    private Boolean isDeleted = false;
+
     public PointEntity(Long id, BigDecimal amount) {
         this(id, amount, null);
     }
@@ -49,5 +52,9 @@ public class PointEntity extends BaseEntity {
             throw new PointException(PointErrorCode.E20000);
         }
         this.amount = this.amount.subtract(point);
+    }
+
+    public void delete() {
+        this.isDeleted = true;
     }
 }

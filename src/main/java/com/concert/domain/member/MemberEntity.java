@@ -21,9 +21,16 @@ public class MemberEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private Boolean isDeleted = false;
+
     @Builder
     public MemberEntity(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public void delete() {
+        this.isDeleted = true;
     }
 }
