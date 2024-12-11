@@ -1,18 +1,15 @@
 package com.concert.infrastructrue.member;
 
 import com.concert.domain.member.MemberReaderRepository;
-import com.concert.domain.member.QMemberEntity;
 import com.concert.domain.member.dto.MemberInfoDto;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Objects;
 
-import static com.concert.domain.member.QMemberEntity.*;
+import static com.concert.domain.member.QMemberEntity.memberEntity;
 
 @Repository
 @RequiredArgsConstructor
