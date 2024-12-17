@@ -30,4 +30,8 @@ public class PointFacade {
         pointHistoryService.create(command.toNewPointHistoryDto(point.id(), PointHistoryType.CHARGE));
         return PointDto.from(point);
     }
+
+    public PointDto getPoint(Long memberId) {
+        return PointDto.from(pointService.getPoint(memberId));
+    }
 }

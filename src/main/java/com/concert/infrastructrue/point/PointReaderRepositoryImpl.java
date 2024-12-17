@@ -3,6 +3,7 @@ package com.concert.infrastructrue.point;
 import com.concert.domain.point.PointEntity;
 import com.concert.domain.point.PointReaderRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.LockModeType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -32,10 +33,20 @@ public class PointReaderRepositoryImpl implements PointReaderRepository {
     }
 
     @Override
+    public PointEntity getPointWithLock(Long memberId) {
+        return queryFactory
+                .selectFrom(pointEntity)
+                .where(pointEntity.memberId.eq(memberId))
+                .setLockMode(LockModeType.PESSIMISTIC_WRITE)
+                .fetchFirst();
+    }
+
+    @Override
     public boolean existsPoint(Long memberId) {
         return queryFactory.selectOne()
                 .from(pointEntity)
                 .where(pointEntity.memberId.eq(memberId))
+                .setLockMode(LockModeType.PESSIMISTIC_READ)
                 .fetchOne() != null;
     }
 }
