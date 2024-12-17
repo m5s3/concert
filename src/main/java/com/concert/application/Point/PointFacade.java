@@ -2,21 +2,32 @@ package com.concert.application.Point;
 
 import com.concert.application.Point.dto.PointDto;
 import com.concert.application.Point.dto.UpdatePointCommand;
+import com.concert.domain.point.PointHistoryService;
+import com.concert.domain.point.PointHistoryType;
 import com.concert.domain.point.PointService;
+import com.concert.domain.point.dto.PointInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
 public class PointFacade {
 
     private final PointService pointService;
+    private final PointHistoryService pointHistoryService;
 
+    @Transactional
     public PointDto use(UpdatePointCommand command) {
-        return PointDto.from(pointService.use(command.toPointInfoDto()));
+        PointInfoDto point = pointService.use(command.toPointInfoDto());
+        pointHistoryService.create(command.toNewPointHistoryDto(point.id(), PointHistoryType.USE));
+        return PointDto.from(point);
     }
 
+    @Transactional
     public PointDto charge(UpdatePointCommand command) {
-        return PointDto.from(pointService.charge(command.toPointInfoDto()));
+        PointInfoDto point = pointService.charge(command.toPointInfoDto());
+        pointHistoryService.create(command.toNewPointHistoryDto(point.id(), PointHistoryType.CHARGE));
+        return PointDto.from(point);
     }
 }
