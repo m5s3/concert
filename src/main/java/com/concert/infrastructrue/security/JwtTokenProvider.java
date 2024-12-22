@@ -53,7 +53,7 @@ public class JwtTokenProvider implements TokenProvider {
     }
 
     @Override
-    public Long getUserId(String token) {
+    public Long getMemberId(String token) {
         return parseClaims(token).get("memberId", Long.class);
     }
 

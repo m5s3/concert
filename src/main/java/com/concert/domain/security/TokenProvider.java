@@ -5,6 +5,6 @@ import com.concert.domain.security.dto.NewTokenDto;
 public interface TokenProvider {
 
     String createAccessToken(NewTokenDto token);
-    Long getUserId(String token);
+    Long getMemberId(String token);
     boolean validateToken(String token);
 }
