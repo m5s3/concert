@@ -45,4 +45,11 @@ public class MemberReaderRepositoryImpl implements MemberReaderRepository {
                 .where(memberEntity.name.eq(name))
                 .fetchFirst();
     }
+
+    @Override
+    public boolean existsMember(Long id) {
+        return queryFactory.selectFrom(memberEntity)
+                .where(memberEntity.id.eq(id))
+                .fetchFirst() != null;
+    }
 }

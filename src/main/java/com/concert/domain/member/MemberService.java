@@ -37,4 +37,7 @@ public class MemberService {
         return MemberInfoDto.from(member);
     }
 
+    public boolean existsMember(Long id) {
+        return memberReaderRepository.existsMember(id);
+    }
 }

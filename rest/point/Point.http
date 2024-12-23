@@ -3,12 +3,13 @@ Content-Type: application/json
 
 {
   "member_id": 1,
-  "amount": 1
+  "amount": 10000
 }
 
 ###
 
 POST http://localhost:8080/api/points/use
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzM0OTY2NzQ5LCJleHAiOjE4MjEzNjY3NDl9.KoWSuX01R6Gq3xThiq9X6gnjVrUD5ZpTljl2NENyY2Q
 Content-Type: application/json
 
 {
