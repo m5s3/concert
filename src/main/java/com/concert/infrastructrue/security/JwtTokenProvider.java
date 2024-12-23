@@ -19,17 +19,14 @@ import java.time.LocalDateTime;
 public class JwtTokenProvider implements TokenProvider {
 
     private final Key key;
-    private final long accessTokenExpiredTime;
+    @Value("${jwt.expiration-time}")
+    private Long accessTokenExpiredTime;
 
     public JwtTokenProvider(
-            @Value("${jwt.secret}")
-            String secretKey,
-            @Value("${jwt.expiration-time}")
-            long accessTokenExpiredTime
+            @Value("${jwt.secret}") String secretKey
     ) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
-        this.accessTokenExpiredTime = accessTokenExpiredTime;
     }
 
     @Override
@@ -39,7 +36,7 @@ public class JwtTokenProvider implements TokenProvider {
 
     private String createToken(NewTokenDto token) {
         Claims claims = Jwts.claims();
-        claims.put("memberId", token.userId());
+        claims.put("memberId", token.memberId());
 
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime tokenExpirationTime = now.plusSeconds(accessTokenExpiredTime);

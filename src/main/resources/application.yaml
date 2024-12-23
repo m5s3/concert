@@ -43,5 +43,5 @@ logging:
 
 ---
 jwt:
-  expiration-time: 60 * 60 * 24 * 1000 #1일
-  secret: Y29uY2VydC1tNXMzLWJhc2U2NA
+  expiration-time: 86400000 # 60 * 60 * 24 * 1000 : 1일
+  secret: Y29uY2VydC1tNXMzLWJhc2U2NAY29uY2VydC1tNXMzLWJhc2U2NAY29uY2VydC1tNXMzLWJhc2U2NA

@@ -1,5 +1,6 @@
 package com.concert.infrastructrue.member;
 
+import com.concert.domain.member.MemberEntity;
 import com.concert.domain.member.MemberReaderRepository;
 import com.concert.domain.member.dto.MemberInfoDto;
 import com.querydsl.core.types.Projections;
@@ -35,5 +36,13 @@ public class MemberReaderRepositoryImpl implements MemberReaderRepository {
                 .from(memberEntity)
                 .where(memberEntity.name.eq(name))
                 .fetchFirst() != null;
+    }
+
+    @Override
+    public MemberEntity getMember(String name) {
+        return queryFactory.select(memberEntity)
+                .from(memberEntity)
+                .where(memberEntity.name.eq(name))
+                .fetchFirst();
     }
 }

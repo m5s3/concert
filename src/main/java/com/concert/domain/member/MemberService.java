@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,4 +28,13 @@ public class MemberService {
     public MemberInfoDto getMember(Long id) {
         return memberReaderRepository.getMember(id);
     }
+
+    public MemberInfoDto getMember(String name) {
+        MemberEntity member = memberReaderRepository.getMember(name);
+        if (Objects.isNull(member)) {
+            throw new MemberException(MemberErrorCode.E10003);
+        }
+        return MemberInfoDto.from(member);
+    }
+
 }
