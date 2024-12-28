@@ -1,0 +1,13 @@
+###
+POST http://localhost:8080/api/concert
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzM1MzcwNDY1LCJleHAiOjE4MjE3NzA0NjV9.sl49vEttcSFu7U6FpPG26iOK3Zs5uVTKMl0FPJ9xvA4
+Content-Type: application/json
+
+{
+  "title": "test title",
+  "description": "test description",
+  "startDate": "2024-12-28T20:10:00Z",
+  "endDate": "2024-12-28T20:20:00Z",
+  "reservationStartDate": "2024-12-28T20:05:00Z",
+  "countOfSeat": 50
+}
