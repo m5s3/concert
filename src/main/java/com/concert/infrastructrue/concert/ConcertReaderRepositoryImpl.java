@@ -29,6 +29,7 @@ public class ConcertReaderRepositoryImpl implements ConcertReaderRepository {
 
     @Override
     public List<ConcertEntity> searchConcerts(SearchCriteria criteria) {
+        long offset = criteria.page() * criteria.size();
         return queryFactory.selectFrom(concertEntity)
                 .join(concertScheduleEntity)
                 .on(concertEntity.id.eq(concertScheduleEntity.concertId))
@@ -39,6 +40,8 @@ public class ConcertReaderRepositoryImpl implements ConcertReaderRepository {
                         endDateBefore(criteria.endDate()),
                         reservationStartDateAfter(criteria.reservationStartDate())
                 )
+                .offset(offset)
+                .limit(criteria.size())
                 .fetch();
     }
 

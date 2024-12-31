@@ -24,5 +24,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzM1NTY3M
 Content-Type: application/json
 
 {
-  "startDate": "2024-12-28T20:10:00Z"
+  "query": {
+    "description": "test"
+  },
+  "pagination": {
+    "page": 100,
+    "size": 2
+  }
 }

@@ -4,17 +4,14 @@ import com.concert.application.concert.ConcertFacade;
 import com.concert.application.concert.dto.ConcertDto;
 import com.concert.application.concert.dto.ConcertQuery;
 import com.concert.interfaces.api.common.ApiResponse;
-import com.concert.interfaces.api.concert.dto.ConcertResponse;
-import com.concert.interfaces.api.concert.dto.ConcertSearchQuery;
-import com.concert.interfaces.api.concert.dto.CreateConcertRequest;
-import lombok.Getter;
+import com.concert.interfaces.api.common.dto.Pagination;
+import com.concert.interfaces.api.concert.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -39,9 +36,10 @@ public class ConcertController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<ApiResponse<List<ConcertResponse>>> searchConcerts(@RequestBody ConcertSearchQuery query) {
+    public ResponseEntity<ApiResponse<ConcertResponses>> searchConcerts(@RequestBody SearchConcertRequest query) {
         List<ConcertDto> concerts = concertFacade.searchConcerts(query.toConcertQuery());
         List<ConcertResponse> concertResponses = concerts.stream().map(ConcertResponse::from).toList();
-        return ResponseEntity.ok(ApiResponse.success(concertResponses));
+        ConcertResponses response = ConcertResponses.builder().concertResponses(concertResponses).totalCount(concertResponses.size()).build();
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
 }

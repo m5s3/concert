@@ -14,7 +14,9 @@ public record ConcertQuery(
         @Nullable Long scheduleId,
         @Nullable LocalDateTime startDate,
         @Nullable LocalDateTime endDate,
-        @Nullable LocalDateTime reservationStartDate
+        @Nullable LocalDateTime reservationStartDate,
+        long page,
+        long size
 ) {
 
     public SearchCriteria toSearchCriteria() {
@@ -24,6 +26,8 @@ public record ConcertQuery(
                 .startDate(startDate)
                 .endDate(endDate)
                 .reservationStartDate(reservationStartDate)
+                .page(page)
+                .size(size)
                 .build();
     }
 }

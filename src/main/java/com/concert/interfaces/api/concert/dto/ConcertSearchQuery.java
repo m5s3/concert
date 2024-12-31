@@ -2,6 +2,7 @@ package com.concert.interfaces.api.concert.dto;
 
 import com.concert.application.concert.dto.ConcertQuery;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.time.LocalDateTime;
 
