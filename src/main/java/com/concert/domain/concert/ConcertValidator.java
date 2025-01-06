@@ -63,13 +63,6 @@ public class ConcertValidator {
             throw ConcertException.ofErrorCode(ConcertErrorCode.E40010);
         }
 
-        LocalDateTime now = LocalDateTime.now();
-        if (concertScheduleDto.startDate().isBefore(now) ||
-                concertScheduleDto.endDate().isBefore(now) ||
-                concertScheduleDto.reservationStartDate().isBefore(now)) {
-            throw ConcertException.ofErrorCode(ConcertErrorCode.E40011);
-        }
-
         if (concertScheduleDto.startDate().isAfter(concertScheduleDto.endDate())) {
             throw ConcertException.ofErrorCode(ConcertErrorCode.E40012);
         }

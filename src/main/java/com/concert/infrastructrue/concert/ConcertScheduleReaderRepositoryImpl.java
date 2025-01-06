@@ -20,9 +20,16 @@ public class ConcertScheduleReaderRepositoryImpl implements ConcertScheduleReade
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public ConcertScheduleEntity getSchedule(Long concertId) {
+    public ConcertScheduleEntity getScheduleOfSchedule(Long concertId) {
         return queryFactory.selectFrom(concertScheduleEntity)
                 .where(concertScheduleEntity.concertId.eq(concertId))
+                .fetchOne();
+    }
+
+    @Override
+    public ConcertScheduleEntity getSchedule(Long concertScheduleId) {
+        return queryFactory.selectFrom(concertScheduleEntity)
+                .where(concertScheduleEntity.id.eq(concertScheduleId))
                 .fetchOne();
     }
 

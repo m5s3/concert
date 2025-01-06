@@ -56,4 +56,11 @@ public class ConcertScheduleEntity extends BaseEntity {
     public void delete() {
         this.isDeleted = true;
     }
+
+    public void decreaseRemainSeat() {
+        if (this.countOfRemainSeat < 0) {
+            throw new ConcertException(ConcertErrorCode.E40020);
+        }
+        this.countOfRemainSeat--;
+    }
 }

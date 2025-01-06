@@ -1,11 +1,10 @@
 package com.concert.domain.concert;
 
-import com.concert.domain.concert.dto.SearchCriteria;
-
 import java.util.List;
 
 public interface ConcertScheduleReaderRepository {
 
-    ConcertScheduleEntity getSchedule(Long concertId);
+    ConcertScheduleEntity getScheduleOfSchedule(Long concertId);
+    ConcertScheduleEntity getSchedule(Long concertScheduleId);
     List<ConcertScheduleEntity> getSchedules(List<Long> concertIds);
 }

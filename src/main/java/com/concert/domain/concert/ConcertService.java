@@ -9,10 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -40,7 +38,7 @@ public class ConcertService {
         if (Objects.isNull(concert)) {
             throw ConcertException.ofErrorCode(ConcertErrorCode.E40004);
         }
-        ConcertScheduleEntity schedule = concertScheduleReaderRepository.getSchedule(concertId);
+        ConcertScheduleEntity schedule = concertScheduleReaderRepository.getScheduleOfSchedule(concertId);
         if (Objects.isNull(schedule)) {
             throw ConcertException.ofErrorCode(ConcertErrorCode.E40017);
         }

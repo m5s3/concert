@@ -53,3 +53,26 @@ CREATE TABLE IF NOT EXISTS concert_schedule (
                                                 updated_at DATETIME,
                                                 FOREIGN KEY (concert_id) REFERENCES concert(concert_id)  -- 외래 키 추가
     );
+
+-- seat 테이블 수정
+CREATE TABLE IF NOT EXISTS seat (
+    seat_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    concert_schedule_id BIGINT NOT NULL,
+    seat_number VARCHAR(10) NOT NULL,
+    is_reserved BOOLEAN DEFAULT FALSE,
+    is_deleted BOOLEAN DEFAULT FALSE,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- reservation 테이블
+CREATE TABLE IF NOT EXISTS reservation (
+    reservation_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT NOT NULL,
+    concert_schedule_id BIGINT NOT NULL,
+    seat_id BIGINT NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    is_deleted BOOLEAN DEFAULT FALSE,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME
+);
