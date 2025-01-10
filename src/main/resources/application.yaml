@@ -18,6 +18,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  data:
+    redis:
+      host: localhost     # Redis 호스트
+      port: 6380          # Redis 포트
 ---
 spring:
   config:
