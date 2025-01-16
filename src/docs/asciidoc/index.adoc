@@ -1,0 +1,59 @@
+= Concert API
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[overview]]
+== Overview
+
+[[overview-http-verbs]]
+=== HTTP verbs
+
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `POST`
+| Used to create a new resource
+
+| `PUT`
+| Used to update an existing resource
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+=== HTTP status codes
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully
+
+| `400 Bad Request`
+| The request was malformed
+
+| `404 Not Found`
+| The requested resource did not exist
+|===
+
+[[resources]]
+== Resources
+
+[[resources-concert]]
+=== Concert API
+
+[[resources-concert-create]]
+==== 콘서트 생성
+
+operation::concert-create[snippets='http-request,http-response,request-fields,response-fields']

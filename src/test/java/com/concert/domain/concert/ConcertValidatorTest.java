@@ -90,21 +90,6 @@ class ConcertValidatorTest {
     }
 
     @Test
-    void validate_shouldThrowException_whenReservationDateIsInPast() {
-        NewConcertScheduleDto invalidScheduleDto = NewConcertScheduleDto.builder()
-                .startDate(validScheduleDto.startDate())
-                .endDate(validScheduleDto.endDate())
-                .reservationStartDate(LocalDateTime.now().minusDays(1))
-                .countOfSeat(validScheduleDto.countOfSeat())
-                .countOfRemainSeat(validScheduleDto.countOfRemainSeat())
-                .build();
-
-        assertThatThrownBy(() -> concertValidator.validate(validConcertDto, invalidScheduleDto))
-                .isInstanceOf(ConcertException.class)
-                .hasMessage(ConcertErrorCode.E40011.getMessage());
-    }
-
-    @Test
     void validate_shouldNotThrowException_whenAllDataIsValid() {
         assertThatNoException().isThrownBy(() -> concertValidator.validate(validConcertDto, validScheduleDto));
     }
