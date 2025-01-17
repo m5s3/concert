@@ -56,4 +56,4 @@
 [[resources-concert-create]]
 ==== 콘서트 생성
 
-operation::concert-create[snippets='http-request,http-response,request-fields,response-fields']
+operation::createConcert[snippets='http-request,http-response,request-fields,response-fields']

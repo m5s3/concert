@@ -70,8 +70,8 @@ ext {
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
     outputs.dir snippetsDir
+    useJUnitPlatform()
 }
 
 tasks.register('copyDocument', Copy) {
