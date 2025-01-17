@@ -59,51 +59,51 @@ class ConcertControllerTest extends RestDocsTest {
         when(concertFacade.createConcert(any())).thenReturn(createConcertDto(1L));
 
         given().contentType(ContentType.JSON)
-                        .body(new CreateConcertRequest(title, description, startDate, endDate,
-                                reservationStartDate, countOfSeat)
-                        )
-                        .post("/api/concerts")
-                        .then()
-                        .status(HttpStatus.OK)
-                                .apply(document("createConcert", requestPreprocessor(), responsePreprocessor(),
-                                        requestFields(
-                                                fieldWithPath("title").type(JsonFieldType.STRING)
-                                                        .description("콘서트 제목"),
-                                                fieldWithPath("description").type(JsonFieldType.STRING)
-                                                        .description("콘서트 설명"),
-                                                fieldWithPath("startDate").type(JsonFieldType.ARRAY)
-                                                        .description("콘서트 시작일시"),
-                                                fieldWithPath("endDate").type(JsonFieldType.ARRAY)
-                                                        .description("콘서트 종료일시"),
-                                                fieldWithPath("reservationStartDate").type(JsonFieldType.ARRAY)
-                                                        .description("예약 시작일시"),
-                                                fieldWithPath("countOfSeat").type(JsonFieldType.NUMBER)
-                                                        .description("총 좌석 수")
-                                        ),
-                                        responseFields(
-                                                fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                                                        .description("성공 여부"),
-                                                fieldWithPath("data.id").type(JsonFieldType.NUMBER)
-                                                        .description("콘서트 ID"),
-                                                fieldWithPath("data.title").type(JsonFieldType.STRING)
-                                                        .description("콘서트 제목"),
-                                                fieldWithPath("data.description").type(JsonFieldType.STRING)
-                                                        .description("콘서트 설명"),
-                                                fieldWithPath("data.scheduleId").type(JsonFieldType.NUMBER)
-                                                        .description("스케줄 ID"),
-                                                fieldWithPath("data.startDate").type(JsonFieldType.STRING)
-                                                        .description("콘서트 시작일시"),
-                                                fieldWithPath("data.endDate").type(JsonFieldType.STRING)
-                                                        .description("콘서트 종료일시"),
-                                                fieldWithPath("data.reservationStartDate").type(JsonFieldType.STRING)
-                                                        .description("예약 시작일시"),
-                                                fieldWithPath("data.countOfSeat").type(JsonFieldType.NUMBER)
-                                                        .description("총 좌석 수"),
-                                                fieldWithPath("data.countOfRemainSeat").type(JsonFieldType.NUMBER)
-                                                        .description("잔여 좌석 수"),
-                                                fieldWithPath("message").type(JsonFieldType.NULL)
-                                                        .description("에러 정보")
-                                        )));
+            .body(new CreateConcertRequest(title, description, startDate, endDate,
+                    reservationStartDate, countOfSeat)
+            )
+            .post("/api/concerts")
+            .then()
+            .status(HttpStatus.OK)
+                .apply(document("createConcert", requestPreprocessor(), responsePreprocessor(),
+                    requestFields(
+                        fieldWithPath("title").type(JsonFieldType.STRING)
+                                .description("콘서트 제목"),
+                        fieldWithPath("description").type(JsonFieldType.STRING)
+                                .description("콘서트 설명"),
+                        fieldWithPath("startDate").type(JsonFieldType.ARRAY)
+                                .description("콘서트 시작일시"),
+                        fieldWithPath("endDate").type(JsonFieldType.ARRAY)
+                                .description("콘서트 종료일시"),
+                        fieldWithPath("reservationStartDate").type(JsonFieldType.ARRAY)
+                                .description("예약 시작일시"),
+                        fieldWithPath("countOfSeat").type(JsonFieldType.NUMBER)
+                                .description("총 좌석 수")
+                    ),
+                    responseFields(
+                        fieldWithPath("success").type(JsonFieldType.BOOLEAN)
+                                .description("성공 여부"),
+                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                .description("콘서트 ID"),
+                        fieldWithPath("data.title").type(JsonFieldType.STRING)
+                                .description("콘서트 제목"),
+                        fieldWithPath("data.description").type(JsonFieldType.STRING)
+                                .description("콘서트 설명"),
+                        fieldWithPath("data.scheduleId").type(JsonFieldType.NUMBER)
+                                .description("스케줄 ID"),
+                        fieldWithPath("data.startDate").type(JsonFieldType.STRING)
+                                .description("콘서트 시작일시"),
+                        fieldWithPath("data.endDate").type(JsonFieldType.STRING)
+                                .description("콘서트 종료일시"),
+                        fieldWithPath("data.reservationStartDate").type(JsonFieldType.STRING)
+                                .description("예약 시작일시"),
+                        fieldWithPath("data.countOfSeat").type(JsonFieldType.NUMBER)
+                                .description("총 좌석 수"),
+                        fieldWithPath("data.countOfRemainSeat").type(JsonFieldType.NUMBER)
+                                .description("잔여 좌석 수"),
+                        fieldWithPath("message").type(JsonFieldType.NULL)
+                                .description("에러 정보")
+                    )));
 
     }
 
