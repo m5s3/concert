@@ -24,6 +24,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -32,6 +34,16 @@ class ConcertControllerTest extends RestDocsTest {
     private ConcertController controller;
     private ConcertFacade concertFacade;
     private ObjectMapper objectMapper;
+
+    // 테스트용 Concert
+    private static final String title = "테스트 콘서트";
+    private static final String description = "테스트 콘서트 설명";
+    private static final long scheduleId = 1L;
+    private static final LocalDateTime startDate = LocalDateTime.now().plusDays(1);
+    private static final LocalDateTime endDate = LocalDateTime.now().plusDays(2);
+    private static final LocalDateTime reservationStartDate = LocalDateTime.now();
+    private static final int countOfSeat = 50;
+    private static final int countOfRemainSeat = 50;
 
     @BeforeEach
     public void setUp() {
@@ -44,27 +56,7 @@ class ConcertControllerTest extends RestDocsTest {
 
     @Test
     void createConcert() throws Exception {
-        String title = "테스트 콘서트";
-        String description = "테스트 콘서트 설명";
-        long scheduleId = 1L;
-        LocalDateTime startDate = LocalDateTime.now().plusDays(1);
-        LocalDateTime endDate = LocalDateTime.now().plusDays(2);
-        LocalDateTime reservationStartDate = LocalDateTime.now();
-        int countOfSeat = 50;
-        int countOfRemainSeat = 50;
-        when(concertFacade.createConcert(any())).thenReturn(
-                ConcertDto.builder()
-                        .id(1L)
-                        .title(title)
-                        .description(description)
-                        .scheduleId(scheduleId)
-                        .startDate(startDate)
-                        .endDate(endDate)
-                        .reservationStartDate(reservationStartDate)
-                        .countOfSeat(countOfSeat)
-                        .countOfRemainSeat(countOfRemainSeat)
-                        .build()
-        );
+        when(concertFacade.createConcert(any())).thenReturn(createConcertDto(1L));
 
         given().contentType(ContentType.JSON)
                         .body(new CreateConcertRequest(title, description, startDate, endDate,
@@ -113,5 +105,63 @@ class ConcertControllerTest extends RestDocsTest {
                                                         .description("에러 정보")
                                         )));
 
+    }
+
+    @Test
+    void getConcert() {
+        // Given
+        long concertId = 1L;
+        when(concertFacade.getConcert(any())).thenReturn(createConcertDto(concertId));
+
+        // When & Then
+        given()
+            .get("/api/concerts/{concertId}", concertId)
+            .then()
+            .status(HttpStatus.OK)
+            .apply(document("getConcert", requestPreprocessor(), responsePreprocessor(),
+                pathParameters(parameterWithName("concertId").description("콘서트 아이디")),
+                responseFields(
+                    fieldWithPath("success").type(JsonFieldType.BOOLEAN)
+                            .description("성공 여부"),
+                    fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                            .description("콘서트 ID"),
+                    fieldWithPath("data.title").type(JsonFieldType.STRING)
+                            .description("콘서트 제목"),
+                    fieldWithPath("data.description").type(JsonFieldType.STRING)
+                            .description("콘서트 설명"),
+                    fieldWithPath("data.scheduleId").type(JsonFieldType.NUMBER)
+                            .description("스케줄 ID"),
+                    fieldWithPath("data.startDate").type(JsonFieldType.STRING)
+                            .description("콘서트 시작일시"),
+                    fieldWithPath("data.endDate").type(JsonFieldType.STRING)
+                            .description("콘서트 종료일시"),
+                    fieldWithPath("data.reservationStartDate").type(JsonFieldType.STRING)
+                            .description("예약 시작일시"),
+                    fieldWithPath("data.countOfSeat").type(JsonFieldType.NUMBER)
+                            .description("총 좌석 수"),
+                    fieldWithPath("data.countOfRemainSeat").type(JsonFieldType.NUMBER)
+                            .description("잔여 좌석 수"),
+                    fieldWithPath("message").type(JsonFieldType.NULL)
+                            .description("에러 정보")
+                )));
+    }
+
+    @Test
+    void searchConcerts() {
+
+    }
+
+    private static ConcertDto createConcertDto(Long id) {
+        return ConcertDto.builder()
+                .id(id)
+                .title(title)
+                .description(description)
+                .scheduleId(scheduleId)
+                .startDate(startDate)
+                .endDate(endDate)
+                .reservationStartDate(reservationStartDate)
+                .countOfSeat(countOfSeat)
+                .countOfRemainSeat(countOfRemainSeat)
+                .build();
     }
 }

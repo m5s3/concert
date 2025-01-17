@@ -57,3 +57,8 @@
 ==== 콘서트 생성
 
 operation::createConcert[snippets='http-request,http-response,request-fields,response-fields']
+
+[[resources-concert-get]]
+==== 콘서트 조회
+
+operation::getConcert[snippets='http-request,http-response,path-parameters,response-fields']
