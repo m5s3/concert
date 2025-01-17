@@ -3,7 +3,7 @@
 :icons: font
 :source-highlighter: highlightjs
 :toc: left
-:toclevels: 2
+:toclevels: 3
 :sectlinks:
 
 [[overview]]
@@ -62,3 +62,8 @@ operation::createConcert[snippets='http-request,http-response,request-fields,res
 ==== 콘서트 조회
 
 operation::getConcert[snippets='http-request,http-response,path-parameters,response-fields']
+
+[[resources-concert-search]]
+==== 콘서트 검색
+
+operation::searchConcerts[snippets='http-request,http-response,request-fields,response-fields']
