@@ -67,3 +67,16 @@ operation::getConcert[snippets='http-request,http-response,path-parameters,respo
 ==== 콘서트 검색
 
 operation::searchConcerts[snippets='http-request,http-response,request-fields,response-fields']
+
+[[resources-member]]
+=== Member API
+
+[[resources-member-create]]
+==== 멤버 생성
+
+operation::createMember[snippets='http-request,http-response,request-fields,response-fields']
+
+[[resources-member-get]]
+==== 콘서트 조회
+
+operation::getMember[snippets='http-request,http-response,path-parameters,response-fields']
