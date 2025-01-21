@@ -24,7 +24,7 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<MemberResponse>> getMembers(@PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse<MemberResponse>> getMember(@PathVariable("id") Long id) {
         MemberDto member = memberFacade.getMember(MemberRequest.builder().id(id).build().toQuery());
         return ResponseEntity.ok(ApiResponse.success(MemberResponse.from(member)));
     }
