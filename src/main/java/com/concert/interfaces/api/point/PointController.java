@@ -20,11 +20,7 @@ public class PointController {
 
     @PostMapping("/charge")
     public ResponseEntity<ApiResponse<PointResponse>> charge(@RequestBody UpdatePointRequest request) {
-        try {
-            return ResponseEntity.ok(ApiResponse.success(PointResponse.from(pointFacade.charge(request.toCommand()))));
-        } catch (Exception e) {
-            return ResponseEntity.ok(ApiResponse.success(null));
-        }
+        return ResponseEntity.ok(ApiResponse.success(PointResponse.from(pointFacade.charge(request.toCommand()))));
     }
 
     @PostMapping("/use")
