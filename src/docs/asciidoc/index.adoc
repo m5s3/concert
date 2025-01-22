@@ -9,44 +9,6 @@
 [[overview]]
 == Overview
 
-[[overview-http-verbs]]
-=== HTTP verbs
-
-|===
-| Verb | Usage
-
-| `GET`
-| Used to retrieve a resource
-
-| `POST`
-| Used to create a new resource
-
-| `PUT`
-| Used to update an existing resource
-
-| `DELETE`
-| Used to delete an existing resource
-|===
-
-[[overview-http-status-codes]]
-=== HTTP status codes
-
-|===
-| Status code | Usage
-
-| `200 OK`
-| The request completed successfully
-
-| `201 Created`
-| A new resource has been created successfully
-
-| `400 Bad Request`
-| The request was malformed
-
-| `404 Not Found`
-| The requested resource did not exist
-|===
-
 [[resources]]
 == Resources
 
@@ -77,6 +39,27 @@ operation::searchConcerts[snippets='http-request,http-response,request-fields,re
 operation::createMember[snippets='http-request,http-response,request-fields,response-fields']
 
 [[resources-member-get]]
-==== 콘서트 조회
+==== 멤버 조회
 
 operation::getMember[snippets='http-request,http-response,path-parameters,response-fields']
+
+[[resources-point]]
+=== Point API
+
+[[resources-point-charge]]
+==== 포인트 충전
+
+operation::charge[snippets='http-request,http-response,request-fields,response-fields']
+
+[[resources-point-use]]
+==== 포인트 사용
+
+operation::use[snippets='http-request,http-response,request-fields,response-fields']
+
+[[resources-auth]]
+=== Auth API
+
+[[resources-auth-login]]
+==== 로그인
+
+operation::login[snippets='http-request,http-response,request-fields,response-fields']
