@@ -1,11 +1,13 @@
 package com.concert.domain.seat;
 
 import com.concert.domain.seat.dto.NewSeatDto;
+import com.concert.domain.seat.dto.SeatSearchCriteria;
 import com.concert.domain.seat.dto.SeatInfoDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -27,8 +29,17 @@ public class SeatService {
         return SeatInfoDto.from(newSeat);
     }
 
+    @Transactional(readOnly = true)
     public SeatInfoDto findSeat(Long seatId) {
         SeatEntity seat = seatReaderRepository.getSeat(seatId);
         return SeatInfoDto.from(seat);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SeatInfoDto> getSeats(SeatSearchCriteria searchCriteria) {
+        return seatReaderRepository.getSeats(searchCriteria)
+                .stream()
+                .map(SeatInfoDto::from)
+                .toList();
     }
 } 
