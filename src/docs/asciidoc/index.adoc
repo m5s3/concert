@@ -30,6 +30,11 @@ operation::getConcert[snippets='http-request,http-response,path-parameters,respo
 
 operation::searchConcerts[snippets='http-request,http-response,request-fields,response-fields']
 
+[[resources-concert-seats]]
+==== 좌석 조회
+
+operation::getSeats[snippets='http-request,http-response,path-parameters,query-parameters,response-fields']
+
 [[resources-member]]
 === Member API
 

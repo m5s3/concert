@@ -3,6 +3,8 @@ package com.concert.interfaces.api.concert;
 import com.concert.application.concert.ConcertFacade;
 import com.concert.application.concert.dto.ConcertDto;
 import com.concert.application.concert.dto.CreateConcertCommend;
+import com.concert.application.seat.SeatFacade;
+import com.concert.application.seat.dto.SeatDto;
 import com.concert.interfaces.api.RestDocsTest;
 import com.concert.interfaces.api.common.dto.Pagination;
 import com.concert.interfaces.api.concert.dto.ConcertSearchQuery;
@@ -14,32 +16,29 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.concert.interfaces.api.RestDocsUtils.requestPreprocessor;
 import static com.concert.interfaces.api.RestDocsUtils.responsePreprocessor;
-import static io.restassured.module.mockmvc.RestAssuredMockMvc.post;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 
 class ConcertControllerTest extends RestDocsTest {
 
     private ConcertController controller;
     private ConcertFacade concertFacade;
-    private ObjectMapper objectMapper;
+    private SeatFacade seatFacade;
 
     // 테스트용 Concert
+    private static final long concertId = 1L;
     private static final String title = "%d 테스트 콘서트";
     private static final String description = "%d 테스트 콘서트 설명";
     private static final long scheduleId = 1L;
@@ -52,15 +51,13 @@ class ConcertControllerTest extends RestDocsTest {
     @BeforeEach
     public void setUp() {
         concertFacade = mock(ConcertFacade.class);
-        controller = new ConcertController(concertFacade);
+        seatFacade = mock(SeatFacade.class);
+        controller = new ConcertController(concertFacade, seatFacade);
         mockMvc = mockController(controller);
-        objectMapper = new ObjectMapper();
     }
 
-
     @Test
-    void createConcert() throws Exception {
-        Long concertId = 1L;
+    void createConcert() {
         when(concertFacade.createConcert(any())).thenReturn(createConcertDto(concertId));
 
         given().contentType(ContentType.JSON)
@@ -109,13 +106,11 @@ class ConcertControllerTest extends RestDocsTest {
                         fieldWithPath("message").type(JsonFieldType.NULL)
                                 .description("에러 정보")
                     )));
-
     }
 
     @Test
     void getConcert() {
         // Given
-        long concertId = 1L;
         when(concertFacade.getConcert(any())).thenReturn(createConcertDto(concertId));
 
         // When & Then
@@ -216,6 +211,54 @@ class ConcertControllerTest extends RestDocsTest {
                             .description("에러 정보")
                 )
             ));
+    }
+
+    @Test
+    void getSeats() {
+        // Given
+        when(seatFacade.getSeats(any())).thenReturn(List.of(
+                SeatDto.builder().id(1L).seatNumber("A1").scheduleId(scheduleId).isReserved(false).build(),
+                SeatDto.builder().id(2L).seatNumber("A2").scheduleId(scheduleId).isReserved(false).build(),
+                SeatDto.builder().id(3L).seatNumber("A3").scheduleId(scheduleId).isReserved(true).build()
+        ));
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("page", "1");
+        queryParams.put("size", "10");
+        queryParams.put("concertScheduleId", String.valueOf(scheduleId));
+
+        // When & Then
+        given()
+            .queryParams(queryParams)
+            .get("/api/concerts/{concertId}/seats", concertId)
+            .then()
+            .status(HttpStatus.OK)
+            .apply(document("getSeats", requestPreprocessor(), responsePreprocessor(),
+                pathParameters(
+                    parameterWithName("concertId").description("콘서트 ID")
+                ),
+                queryParameters(
+                    parameterWithName("concertScheduleId").description("콘서트 스케줄 ID"),
+                    parameterWithName("size").description("좌석 수"),
+                    parameterWithName("page").description("페이지 번호")
+                ),
+                responseFields(
+                    fieldWithPath("success").type(JsonFieldType.BOOLEAN)
+                            .description("성공 여부"),
+                    fieldWithPath("data.seats[].id").type(JsonFieldType.NUMBER)
+                            .description("좌석 ID"),
+                    fieldWithPath("data.seats[].scheduleId").type(JsonFieldType.NUMBER)
+                            .description("스케줄 ID"),
+                    fieldWithPath("data.seats[].seatNumber").type(JsonFieldType.STRING)
+                            .description("좌석 번호"),
+                    fieldWithPath("data.seats[].isReserved").type(JsonFieldType.BOOLEAN)
+                            .description("좌석 예약 상태"),
+                    fieldWithPath("data.totalCount").type(JsonFieldType.NUMBER)
+                            .description("좌석 개수"),
+                    fieldWithPath("message").type(JsonFieldType.NULL)
+                            .description("에러 정보")
+                )
+                ));
     }
 
     private static ConcertDto createConcertDto(Long id) {

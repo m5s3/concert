@@ -1,14 +1,14 @@
 ###
-POST http://localhost:8080/api/concert
+POST http://localhost:8080/api/concerts
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzM1MzcwNDY1LCJleHAiOjE4MjE3NzA0NjV9.sl49vEttcSFu7U6FpPG26iOK3Zs5uVTKMl0FPJ9xvA4
 Content-Type: application/json
 
 {
   "title": "test title",
   "description": "test description",
-  "startDate": "2024-12-28T20:10:00Z",
-  "endDate": "2024-12-28T20:20:00Z",
-  "reservationStartDate": "2024-12-28T20:05:00Z",
+  "startDate": "2024-12-28T20:10:00",
+  "endDate": "2024-12-28T20:20:00",
+  "reservationStartDate": "2024-12-28T20:05:00",
   "countOfSeat": 50
 }
 
@@ -25,10 +25,19 @@ Content-Type: application/json
 
 {
   "query": {
-    "description": "test"
+    "concertId": 33,
+    "reservationStartDate": "2025-01-21T00:00:00",
+    "startDate": "2025-02-24T00:00:00",
+    "endDate": "2025-02-26T08:21:01"
   },
   "pagination": {
-    "page": 100,
-    "size": 2
+    "page": 0,
+    "size": 50
   }
 }
+
+
+###
+GET http://localhost:8080/api/concerts/33/seats?concertScheduleId=33&page=0&size=50
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNzM3NTM0ODMyLCJleHAiOjE4MjM5MzQ4MzJ9.Yh1VBN147PcqochOO4CtB7wiBf1xpQTkEgXdX5MkIV0
+
