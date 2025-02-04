@@ -5,13 +5,13 @@
 레이어드 아키텍처와 클린 아키텍처의 장점을 결합하여, 유지보수성과 확장성을 높이는 방법을 학습하고 적용해보는 데 목적이 있습니다.
 
 ### 기술 스택
-Language: Java 21
-Framework: Spring Boot
-Documentation: Spring Rest Docs
-Build/Dependency: Gradle
-Test: JUnit5
-Database: MySQL, H2
-Caching/Queue: Redis (예매 대기열 및 분산락 구현 시 사용했다면 기재)
+Language: Java 21   
+Framework: Spring Boot   
+Documentation: Spring Rest Docs   
+Build/Dependency: Gradle   
+Test: JUnit5   
+Database: MySQL, H2   
+Caching/Queue: Redis   
 
 ### 프로젝트 구조
 ```
@@ -41,9 +41,12 @@ concert
   Repository 구현체, Client, Configuration 등 배치
 
 ### 실행 방법
-빌드
+
+빌드   
 `./gradlew clean build`
-테스트
+
+테스트   
 `./gradlew test`
-API 문서 생성
+
+API 문서 생성   
 `./gradlw copyDocument`
