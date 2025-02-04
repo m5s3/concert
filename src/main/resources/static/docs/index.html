@@ -501,16 +501,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/concerts HTTP/1.1
 Content-Type: application/json
 Content-Type: application/json
-Accept: application/json
-Content-Length: 285
+Content-Length: 282
 Host: localhost
 
 {
   "title" : "1 테스트 콘서트",
   "description" : "1 테스트 콘서트 설명",
-  "startDate" : [ 2025, 2, 5, 11, 11, 30, 697506000 ],
-  "endDate" : [ 2025, 2, 6, 11, 11, 30, 697520000 ],
-  "reservationStartDate" : [ 2025, 2, 4, 11, 11, 30, 697522000 ],
+  "startDate" : [ 2025, 2, 5, 17, 51, 1, 297904000 ],
+  "endDate" : [ 2025, 2, 6, 17, 51, 1, 297916000 ],
+  "reservationStartDate" : [ 2025, 2, 4, 17, 51, 1, 297918000 ],
   "countOfSeat" : 50
 }</code></pre>
 </div>
@@ -522,22 +521,22 @@ Host: localhost
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 372
+Content-Length: 374
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "id" : 1,
     "title" : "1 테스트 콘서트",
     "description" : "1 테스트 콘서트 설명",
     "scheduleId" : 1,
-    "startDate" : "2025-02-05T11:11:30",
-    "endDate" : "2025-02-06T11:11:30",
-    "reservationStartDate" : "2025-02-04T11:11:30",
+    "startDate" : "2025-02-05T17:51:01",
+    "endDate" : "2025-02-06T17:51:01",
+    "reservationStartDate" : "2025-02-04T17:51:01",
     "countOfSeat" : 50,
     "countOfRemainSeat" : 50
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -608,9 +607,9 @@ Content-Length: 372
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
@@ -657,11 +656,6 @@ Content-Length: 372
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">잔여 좌석 수</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -683,22 +677,22 @@ Host: localhost</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 372
+Content-Length: 374
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "id" : 1,
     "title" : "1 테스트 콘서트",
     "description" : "1 테스트 콘서트 설명",
     "scheduleId" : 1,
-    "startDate" : "2025-02-05T11:11:30",
-    "endDate" : "2025-02-06T11:11:30",
-    "reservationStartDate" : "2025-02-04T11:11:30",
+    "startDate" : "2025-02-05T17:51:01",
+    "endDate" : "2025-02-06T17:51:01",
+    "reservationStartDate" : "2025-02-04T17:51:01",
     "countOfSeat" : 50,
     "countOfRemainSeat" : 50
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -742,9 +736,9 @@ Content-Length: 372
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
@@ -791,11 +785,6 @@ Content-Length: 372
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">잔여 좌석 수</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -822,9 +811,9 @@ Host: localhost
     "title" : "테스트",
     "description" : "테스트 콘서트 설명",
     "scheduleId" : 1,
-    "startDate" : "2025-02-05T11:11:30",
-    "endDate" : "2025-02-06T11:11:30",
-    "reservationStartDate" : "2025-02-04T11:11:30"
+    "startDate" : "2025-02-05T17:51:01",
+    "endDate" : "2025-02-06T17:51:01",
+    "reservationStartDate" : "2025-02-04T17:51:01"
   }
 }</code></pre>
 </div>
@@ -836,20 +825,19 @@ Host: localhost
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 1127
+Content-Length: 1129
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "concertResponses" : [ {
       "id" : 1,
       "title" : "1 테스트 콘서트",
       "description" : "1 테스트 콘서트 설명",
       "scheduleId" : 1,
-      "startDate" : "2025-02-05T11:11:30",
-      "endDate" : "2025-02-06T11:11:30",
-      "reservationStartDate" : "2025-02-04T11:11:30",
+      "startDate" : "2025-02-05T17:51:01",
+      "endDate" : "2025-02-06T17:51:01",
+      "reservationStartDate" : "2025-02-04T17:51:01",
       "countOfSeat" : 50,
       "countOfRemainSeat" : 50
     }, {
@@ -857,9 +845,9 @@ Content-Length: 1127
       "title" : "2 테스트 콘서트",
       "description" : "2 테스트 콘서트 설명",
       "scheduleId" : 1,
-      "startDate" : "2025-02-05T11:11:30",
-      "endDate" : "2025-02-06T11:11:30",
-      "reservationStartDate" : "2025-02-04T11:11:30",
+      "startDate" : "2025-02-05T17:51:01",
+      "endDate" : "2025-02-06T17:51:01",
+      "reservationStartDate" : "2025-02-04T17:51:01",
       "countOfSeat" : 50,
       "countOfRemainSeat" : 50
     }, {
@@ -867,14 +855,15 @@ Content-Length: 1127
       "title" : "3 테스트 콘서트",
       "description" : "3 테스트 콘서트 설명",
       "scheduleId" : 1,
-      "startDate" : "2025-02-05T11:11:30",
-      "endDate" : "2025-02-06T11:11:30",
-      "reservationStartDate" : "2025-02-04T11:11:30",
+      "startDate" : "2025-02-05T17:51:01",
+      "endDate" : "2025-02-06T17:51:01",
+      "reservationStartDate" : "2025-02-04T17:51:01",
       "countOfSeat" : 50,
       "countOfRemainSeat" : 50
     } ],
     "totalCount" : 3
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -960,9 +949,9 @@ Content-Length: 1127
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.concertResponses[].id</code></p></td>
@@ -1014,11 +1003,6 @@ Content-Length: 1127
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">콘서트 수</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1040,11 +1024,10 @@ Host: localhost</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 407
+Content-Length: 409
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "seats" : [ {
       "id" : 1,
@@ -1063,7 +1046,8 @@ Content-Length: 407
       "isReserved" : true
     } ],
     "totalCount" : 3
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -1136,9 +1120,9 @@ Content-Length: 407
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.seats[].id</code></p></td>
@@ -1164,11 +1148,6 @@ Content-Length: 407
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.totalCount</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">좌석 개수</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
 </tr>
 </tbody>
 </table>
@@ -1201,15 +1180,15 @@ Host: localhost
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 94
+Content-Length: 96
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "id" : 1,
     "name" : "test"
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -1255,9 +1234,9 @@ Content-Length: 94
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
@@ -1268,11 +1247,6 @@ Content-Length: 94
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">멤버 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
 </tr>
 </tbody>
 </table>
@@ -1295,15 +1269,15 @@ Host: localhost</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 94
+Content-Length: 96
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "id" : 1,
     "name" : "test"
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -1347,9 +1321,9 @@ Content-Length: 94
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
@@ -1360,11 +1334,6 @@ Content-Length: 94
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">멤버 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
 </tr>
 </tbody>
 </table>
@@ -1398,16 +1367,16 @@ Host: localhost
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 114
+Content-Length: 116
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "id" : 1,
     "memberId" : 1,
     "amount" : 1000
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -1458,9 +1427,9 @@ Content-Length: 114
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
@@ -1476,11 +1445,6 @@ Content-Length: 114
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.amount</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">충전 금액</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
 </tr>
 </tbody>
 </table>
@@ -1511,16 +1475,16 @@ Host: localhost
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 114
+Content-Length: 116
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "id" : 1,
     "memberId" : 1,
     "amount" : 1000
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -1571,9 +1535,9 @@ Content-Length: 114
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
@@ -1589,11 +1553,6 @@ Content-Length: 114
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.amount</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">사용 금액</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
 </tr>
 </tbody>
 </table>
@@ -1627,14 +1586,14 @@ Host: localhost
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Authorization: bearer xxxxxx
 Content-Type: application/json
-Content-Length: 83
+Content-Length: 85
 
 {
-  "success" : true,
-  "message" : null,
+  "result" : "SUCCESS",
   "data" : {
     "isSuccess" : true
-  }
+  },
+  "error" : null
 }</code></pre>
 </div>
 </div>
@@ -1680,19 +1639,14 @@ Content-Length: 83
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>result</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API 응답 성공 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.isSuccess</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">로그인 성공 여부</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>message</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">에러 정보</p></td>
 </tr>
 </tbody>
 </table>

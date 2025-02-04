@@ -40,7 +40,6 @@ class MemberControllerTest extends RestDocsTest {
 
         // When
         when(memberFacade.createMember(any())).thenReturn(new MemberDto(memberId, "test"));
-
         // Then
         given().contentType(ContentType.JSON)
                 .body(new CreateMemberRequest("test"))
@@ -53,14 +52,13 @@ class MemberControllerTest extends RestDocsTest {
                                         .description("유저 이름")
                         ),
                         responseFields(
-                                fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                                        .description("성공 여부"),
+                                fieldWithPath("result").type(JsonFieldType.STRING)
+                                        .description("API 응답 성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .description("멤버 ID"),
                                 fieldWithPath("data.name").type(JsonFieldType.STRING)
                                         .description("멤버 이름"),
-                                fieldWithPath("message").type(JsonFieldType.NULL)
-                                        .description("에러 정보")
+                                fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                         )));
     }
 
@@ -80,14 +78,13 @@ class MemberControllerTest extends RestDocsTest {
             .apply(document("getMember", requestPreprocessor(), responsePreprocessor(),
                 pathParameters(parameterWithName("memberId").description("멤버 ID")),
                 responseFields(
-                    fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                            .description("성공 여부"),
+                    fieldWithPath("result").type(JsonFieldType.STRING)
+                            .description("API 응답 성공 여부"),
                     fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                             .description("멤버 ID"),
                     fieldWithPath("data.name").type(JsonFieldType.STRING)
                             .description("멤버 이름"),
-                    fieldWithPath("message").type(JsonFieldType.NULL)
-                            .description("에러 정보")
+                    fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                 )));
     }
 }

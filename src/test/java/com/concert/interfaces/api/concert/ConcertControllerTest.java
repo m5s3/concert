@@ -58,8 +58,10 @@ class ConcertControllerTest extends RestDocsTest {
 
     @Test
     void createConcert() {
+        // Given
         when(concertFacade.createConcert(any())).thenReturn(createConcertDto(concertId));
 
+        // When & Then
         given().contentType(ContentType.JSON)
             .body(new CreateConcertRequest(title.formatted(concertId), description.formatted(concertId), startDate, endDate,
                     reservationStartDate, countOfSeat)
@@ -83,8 +85,8 @@ class ConcertControllerTest extends RestDocsTest {
                                 .description("총 좌석 수")
                     ),
                     responseFields(
-                        fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                                .description("성공 여부"),
+                        fieldWithPath("result").type(JsonFieldType.STRING)
+                                .description("API 응답 성공 여부"),
                         fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                 .description("콘서트 ID"),
                         fieldWithPath("data.title").type(JsonFieldType.STRING)
@@ -103,8 +105,7 @@ class ConcertControllerTest extends RestDocsTest {
                                 .description("총 좌석 수"),
                         fieldWithPath("data.countOfRemainSeat").type(JsonFieldType.NUMBER)
                                 .description("잔여 좌석 수"),
-                        fieldWithPath("message").type(JsonFieldType.NULL)
-                                .description("에러 정보")
+                        fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                     )));
     }
 
@@ -121,8 +122,8 @@ class ConcertControllerTest extends RestDocsTest {
             .apply(document("getConcert", requestPreprocessor(), responsePreprocessor(),
                 pathParameters(parameterWithName("concertId").description("콘서트 아이디")),
                 responseFields(
-                    fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                            .description("성공 여부"),
+                    fieldWithPath("result").type(JsonFieldType.STRING)
+                            .description("API 응답 성공 여부"),
                     fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                             .description("콘서트 ID"),
                     fieldWithPath("data.title").type(JsonFieldType.STRING)
@@ -141,8 +142,7 @@ class ConcertControllerTest extends RestDocsTest {
                             .description("총 좌석 수"),
                     fieldWithPath("data.countOfRemainSeat").type(JsonFieldType.NUMBER)
                             .description("잔여 좌석 수"),
-                    fieldWithPath("message").type(JsonFieldType.NULL)
-                            .description("에러 정보")
+                    fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                 )));
     }
 
@@ -185,8 +185,8 @@ class ConcertControllerTest extends RestDocsTest {
                             .description("콘서트 예약 시작 일시 (nullable: true)")
                 ),
                 responseFields(
-                    fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                            .description("성공 여부"),
+                    fieldWithPath("result").type(JsonFieldType.STRING)
+                                .description("API 응답 성공 여부"),
                     fieldWithPath("data.concertResponses[].id").type(JsonFieldType.NUMBER)
                             .description("콘서트 ID"),
                     fieldWithPath("data.concertResponses[].title").type(JsonFieldType.STRING)
@@ -207,8 +207,7 @@ class ConcertControllerTest extends RestDocsTest {
                             .description("잔여 좌석 수"),
                     fieldWithPath("data.totalCount").type(JsonFieldType.NUMBER)
                             .description("콘서트 수"),
-                    fieldWithPath("message").type(JsonFieldType.NULL)
-                            .description("에러 정보")
+                    fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                 )
             ));
     }
@@ -243,8 +242,8 @@ class ConcertControllerTest extends RestDocsTest {
                     parameterWithName("page").description("페이지 번호")
                 ),
                 responseFields(
-                    fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                            .description("성공 여부"),
+                    fieldWithPath("result").type(JsonFieldType.STRING)
+                            .description("API 응답 성공 여부"),
                     fieldWithPath("data.seats[].id").type(JsonFieldType.NUMBER)
                             .description("좌석 ID"),
                     fieldWithPath("data.seats[].scheduleId").type(JsonFieldType.NUMBER)
@@ -255,8 +254,7 @@ class ConcertControllerTest extends RestDocsTest {
                             .description("좌석 예약 상태"),
                     fieldWithPath("data.totalCount").type(JsonFieldType.NUMBER)
                             .description("좌석 개수"),
-                    fieldWithPath("message").type(JsonFieldType.NULL)
-                            .description("에러 정보")
+                    fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                 )
                 ));
     }

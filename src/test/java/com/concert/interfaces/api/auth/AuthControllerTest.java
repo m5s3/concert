@@ -35,8 +35,6 @@ class AuthControllerTest extends RestDocsTest {
 
     @Test
     void login() {
-        // Given
-
         // When
         when(authFacade.login(any()))
                 .thenReturn("bearer xxxxxx");
@@ -53,14 +51,12 @@ class AuthControllerTest extends RestDocsTest {
                                         .description("유저 이름")
                         ),
                         responseFields(
-                                fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                                                .description("성공 여부"),
+                                fieldWithPath("result").type(JsonFieldType.STRING)
+                                        .description("API 응답 성공 여부"),
                                 fieldWithPath("data.isSuccess").type(JsonFieldType.BOOLEAN)
-                                                .description("로그인 성공 여부"),
-                                fieldWithPath("message").type(JsonFieldType.NULL)
-                                                .description("에러 정보")
-                        )
-                        ));
+                                        .description("로그인 성공 여부"),
+                                fieldWithPath("error").type(JsonFieldType.NULL).ignored()
+                        )));
 
     }
 }

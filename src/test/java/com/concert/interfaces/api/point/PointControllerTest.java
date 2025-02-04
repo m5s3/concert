@@ -65,16 +65,15 @@ class PointControllerTest extends RestDocsTest {
                                         .description("충전 금액")
                         ),
                         responseFields(
-                                fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                                        .description("성공 여부"),
+                                fieldWithPath("result").type(JsonFieldType.STRING)
+                                        .description("API 응답 성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                                 .description("포인트 ID"),
                                 fieldWithPath("data.memberId").type(JsonFieldType.NUMBER)
                                                 .description("포인트 멤버 ID"),
                                 fieldWithPath("data.amount").type(JsonFieldType.NUMBER)
                                                 .description("충전 금액"),
-                                fieldWithPath("message").type(JsonFieldType.NULL)
-                                        .description("에러 정보")
+                                fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                         )));
     }
 
@@ -103,16 +102,15 @@ class PointControllerTest extends RestDocsTest {
                                         .description("사용 금액")
                         ),
                         responseFields(
-                                fieldWithPath("success").type(JsonFieldType.BOOLEAN)
-                                        .description("성공 여부"),
+                                fieldWithPath("result").type(JsonFieldType.STRING)
+                                        .description("API 응답 성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .description("포인트 ID"),
                                 fieldWithPath("data.memberId").type(JsonFieldType.NUMBER)
                                         .description("포인트 멤버 ID"),
                                 fieldWithPath("data.amount").type(JsonFieldType.NUMBER)
                                         .description("사용 금액"),
-                                fieldWithPath("message").type(JsonFieldType.NULL)
-                                        .description("에러 정보")
+                                fieldWithPath("error").type(JsonFieldType.NULL).ignored()
                         )));
     }
 }
