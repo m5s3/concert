@@ -1,7 +1,7 @@
+spring.application.name: concert
+spring.profiles.active: local
+
 spring:
-  config:
-    activate:
-      on-profile: local
   datasource:
     hikari:
       jdbc-url: jdbc:mysql://localhost:3306/concert?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true
@@ -46,3 +46,6 @@ logging:
 jwt:
   expiration-time: 86400000 # 60 * 60 * 24 * 1000 : 1일
   secret: Y29uY2VydC1tNXMzLWJhc2U2NAY29uY2VydC1tNXMzLWJhc2U2NAY29uY2VydC1tNXMzLWJhc2U2NA
+
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
