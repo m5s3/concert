@@ -6,7 +6,7 @@
 
 ### 기술 스택
 Language: Java 21   
-Framework: Spring Boot, Spring Boot data JPA, Spring Boot MVC    
+Framework: Spring Boot, Spring data JPA, QueryDSL, Spring MVC    
 Documentation: Spring Rest Docs   
 Build/Dependency: Gradle   
 Test: JUnit5   
